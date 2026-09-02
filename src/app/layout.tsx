@@ -9,8 +9,16 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "InnovHer | Studio i - YC Style Navbar",
-  description: "Next.js & Tailwind CSS navbar with InnovHer logo, Companies dropdown, Studio i center highlight badge, and Dashboard actions using Outfit typography.",
+  title: "InnovHer | Studio i",
+  description: "Studio i is a venture-building space where companies, founders, creators and investors come together to turn ambition into action.",
+  icons: {
+    icon: [
+      { url: "/studio-favicon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/studio-favicon.png",
+    apple: "/studio-favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
