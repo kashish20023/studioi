@@ -60,9 +60,8 @@ export default function CompaniesDropdown() {
       >
         <span>Companies</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 text-neutral-500 transition-transform duration-200 group-hover:text-black ${
-            isOpen ? "rotate-180 text-black" : ""
-          }`}
+          className={`w-3.5 h-3.5 text-neutral-500 transition-transform duration-200 group-hover:text-black ${isOpen ? "rotate-180 text-black" : ""
+            }`}
         />
       </Link>
 
@@ -84,15 +83,15 @@ export default function CompaniesDropdown() {
                   className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 transition-colors group"
                   onClick={() => setIsOpen(false)}
                 >
-                  <div className="p-2 rounded-md bg-neutral-100 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors mt-0.5">
-                    <Icon className="w-4 h-4 text-neutral-600 group-hover:text-orange-600" />
+                  <div className="p-2 rounded-md bg-neutral-100 group-hover:bg-pink-50 group-hover:text-pink-600 transition-colors mt-0.5">
+                    <Icon className="w-4 h-4 text-neutral-600 group-hover:text-pink-600" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-semibold text-neutral-900 group-hover:text-orange-600 transition-colors">
+                      <p className="text-sm font-semibold text-neutral-900 group-hover:text-pink-600 transition-colors">
                         {item.title}
                       </p>
-                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-orange-500 transition-opacity" />
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-pink-500 transition-opacity" />
                     </div>
                     <p className="text-xs text-neutral-500 truncate mt-0.5">
                       {item.description}

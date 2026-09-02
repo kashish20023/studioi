@@ -95,7 +95,7 @@ export default function CompaniesPage() {
           {selectedSector !== "All" && (
             <button
               onClick={() => setSelectedSector("All")}
-              className="text-orange-600 hover:underline cursor-pointer"
+              className="text-pink-600 hover:underline cursor-pointer"
             >
               Clear Filters
             </button>
@@ -134,7 +134,7 @@ export default function CompaniesPage() {
                 </div>
 
                 {/* COMPANY NAME */}
-                <h3 className="font-serif text-xl font-bold text-neutral-950 group-hover:text-orange-600 transition-colors">
+                <h3 className="font-serif text-xl font-bold text-neutral-950 group-hover:text-pink-600 transition-colors">
                   {company.name}
                 </h3>
 
@@ -155,7 +155,7 @@ export default function CompaniesPage() {
                     href={company.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-900 hover:text-orange-600 transition-colors group/link cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-900 hover:text-pink-600 transition-colors group/link cursor-pointer"
                   >
                     <span>Visit Site</span>
                     <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
@@ -177,7 +177,7 @@ export default function CompaniesPage() {
                 setSearchTerm("");
                 setSelectedSector("All");
               }}
-              className="text-xs font-semibold text-orange-600 hover:underline cursor-pointer"
+              className="text-xs font-semibold text-pink-600 hover:underline cursor-pointer"
             >
               Reset Search &amp; Filters
             </button>

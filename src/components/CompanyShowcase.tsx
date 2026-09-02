@@ -421,7 +421,7 @@ export default function CompanyShowcase() {
             {/* MODAL HEADER */}
             <div className="space-y-3 pb-4 border-b border-neutral-300/70">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full border border-orange-200">
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider bg-pink-100 text-pink-800 px-2.5 py-1 rounded-full border border-pink-200">
                   <Calendar className="w-3 h-3" />
                   {selectedModalStory.batch}
                 </span>

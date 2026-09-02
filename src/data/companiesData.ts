@@ -132,7 +132,7 @@ export const portfolioCompanies: Company[] = [
     "id": "talli-tales",
     "name": "Talli Tales",
     "website": "http://tallitales.com/",
-    "logoUrl": "https://tallitales.com/TalliLogo.webp",
+    "logoUrl": "/images/tallitales.jpg",
     "oneLiner": "Talli Tales is a brand that offers pre-mixed classic cocktails like Cosmopolitan and Long Island Iced Tea with premium ingredients. Their cocktails are crafted elixirs that promise a sensational journey through flavors with each sip.",
     "sector": "Alcoholic Beverage Products"
   },

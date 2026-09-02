@@ -24,7 +24,7 @@ export default function Footer() {
               <span className="text-neutral-500 text-lg font-light">|</span>
               <Link href="/" className="inline-flex items-center bg-white/95 px-2.5 py-1 rounded-xl transition-transform hover:scale-105 shadow-xs">
                 <img
-                  src="/studioi.png"
+                  src="/studio.png"
                   alt="Studio i Logo"
                   className="h-7 w-auto object-contain"
                 />
@@ -39,44 +39,62 @@ export default function Footer() {
 
           {/* COLUMN 2: QUICK LINKS (4 Cols) */}
           <div className="md:col-span-4 space-y-5">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white border-b border-neutral-800 pb-2 inline-block">
               QUICK LINKS
             </h4>
 
-            <ul className="space-y-3 text-sm text-neutral-300">
+            <ul className="space-y-2.5 text-sm text-neutral-300 font-sans">
               <li>
-                <a href="#about" className="hover:text-white transition-colors duration-150">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <Link href="/companies" className="hover:text-white transition-colors duration-150">
-                  Companies Directory
+                <Link href="/" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Home</span>
                 </Link>
               </li>
               <li>
-                <a href="#offering" className="hover:text-white transition-colors duration-150">
-                  Services &amp; Offering
-                </a>
-              </li>
-              <li>
-                <a href="#library" className="hover:text-white transition-colors duration-150">
-                  Resource Library
-                </a>
-              </li>
-              <li>
-                <a href="#team" className="hover:text-white transition-colors duration-150">
-                  Our Team
-                </a>
-              </li>
-              <li>
-                <Link href="/news-events" className="hover:text-white transition-colors duration-150">
-                  News &amp; Events
+                <Link href="/about" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>About Us</span>
                 </Link>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors duration-150">
-                  Contact Us
+                <Link href="/companies" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Companies Directory</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/library" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Resource Library</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/news-events" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>News &amp; Events</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#offering" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Services &amp; Offering</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#team" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Our Team</span>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://accelerator.bharat-ventures.com/apply"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group text-pink-400 font-medium"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Apply for Accelerator</span>
                 </a>
               </li>
             </ul>

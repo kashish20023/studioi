@@ -25,7 +25,7 @@ export default function Navbar() {
             <span className="text-neutral-300 text-sm sm:text-base font-light lg:hidden">|</span>
             <Link href="/" className="flex lg:hidden items-center group transition-transform duration-200 hover:scale-[1.02]">
               <img
-                src="/studioi.png"
+                src="/studio.png"
                 alt="Studio i Logo"
                 className="h-6 sm:h-8 max-h-9 w-auto object-contain transition-all"
               />
@@ -66,9 +66,9 @@ export default function Navbar() {
                 title="Studio i"
               >
                 <img
-                  src="/studioi.png"
+                  src="/studio.png"
                   alt="Studio i Logo"
-                  className="h-9 sm:h-10 max-h-11 w-auto object-contain rounded-md shadow-2xs hover:shadow-xs transition-shadow"
+                  className="h-6 sm:h-7.5 w-auto object-contain transition-all"
                 />
               </Link>
             </div>
