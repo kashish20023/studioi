@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F6F6F2;
+  --foreground: #171717;
+  --yc-pink: #d32f92;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit), "Outfit", sans-serif;
+  --font-outfit: var(--font-outfit), "Outfit", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #d32f92;
+  color: #FFFFFF;
+}
+
+/* GPU Hardware Compositing & Smooth Rendering Utilities */
+.gpu-layer {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
