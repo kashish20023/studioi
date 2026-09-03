@@ -260,7 +260,7 @@ export const portfolioCompanies: Company[] = [
     "id": "tpc",
     "name": "TPC",
     "website": "http://theprojectcafe.in/",
-    "logoUrl": "https://i.tracxn.com/logo/company/theprojectcafe_in_18fs3fdd-d2d1-44fa-b850-8aa9170030d4?devicePixelRatio=1.375&format=webp&height=40&width=40",
+    "logoUrl": "/images/tpc.webp",
     "oneLiner": "The Project Cafe is a gourmet cafe with a vision to bring art and design to the forefront, offering a unique experience to its customers. Established in Ahmedabad, India, the cafe has expanded to other locations, including Goa, and has been recognized for its innovative concept. The company's creative direction is led by Drasty Shah, a renowned entrepreneur and creative director.",
     "sector": "Restaurants"
   }
