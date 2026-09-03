@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Sparkles, Users, Compass, Share2 } from "lucide-react";
 
 function Eyebrow({
   children,
@@ -26,6 +26,8 @@ function Eyebrow({
 }
 
 export default function AboutPage() {
+  const [activePillar, setActivePillar] = useState(0);
+
   const fiveIs = [
     { title: "Identity", tagline: "Finding what you stand for.", number: "01" },
     { title: "Innovation", tagline: "Exploring what could be better.", number: "02" },
@@ -57,53 +59,71 @@ export default function AboutPage() {
 
       <main className="overflow-hidden">
         {/* ================= HERO ================= */}
-        <section className="relative border-b border-black/10">
-          <div className="pointer-events-none absolute right-[-160px] top-[-120px] h-[480px] w-[480px] rounded-full bg-[#d42f92]/10 blur-[120px]" />
+        <section className="relative overflow-hidden border-b border-black/10 py-16 sm:py-20 lg:py-24">
+          {/* Ambient Top Right Glow */}
+          <div className="pointer-events-none absolute right-[-160px] top-[-120px] h-[500px] w-[500px] rounded-full bg-[#d42f92]/10 blur-[130px]" />
 
-          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-            <div className="grid min-h-[82vh] grid-cols-1 items-end gap-14 pb-12 pt-28 lg:grid-cols-12 lg:pb-16 lg:pt-36">
-              {/* LEFT */}
-              <div className="lg:col-span-3 lg:self-start lg:pt-7">
-                <Eyebrow>About Studio I</Eyebrow>
+          <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
 
-                <p className="mt-7 max-w-[220px] text-sm leading-6 text-neutral-500">
-                  A space built for people who want to move from ambition to
-                  action.
-                </p>
-              </div>
+              {/* LEFT COLUMN: DISPLAY HEADLINE */}
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                <div className="mb-6 flex items-center gap-3">
+                  <Eyebrow>About Studio I</Eyebrow>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d42f92]/30 bg-[#d42f92]/5 px-3 py-1 text-xs font-medium text-[#d42f92]">
+                    <Sparkles className="h-3 w-3" />
+                    <span>Venture Building Space</span>
+                  </span>
+                </div>
 
-              {/* RIGHT */}
-              <div className="lg:col-span-9">
-                <h1 className="max-w-6xl font-serif text-[clamp(3rem,6.5vw,7.5rem)] leading-[0.92] tracking-[-0.045em] text-neutral-950">
-                  <span className="font-medium">We bring ambition,</span>
-                  <br />
-                  <span className="font-medium">people and possibility</span>
-                  <br />
-                  <span className="font-light text-neutral-800">
-                    into the same room.
+                <h1 className="font-serif text-[clamp(2.6rem,5.5vw,6.4rem)] leading-[0.98] tracking-[-0.04em] text-neutral-950">
+                  <span className="font-semibold block">We bring ambition,</span>
+                  <span className="font-medium block text-neutral-900">people &amp; possibility</span>
+                  <span className="italic font-light text-neutral-700 block mt-1">
+                    into the same room<span className="text-[#d42f92] not-italic">.</span>
                   </span>
                 </h1>
+              </div>
 
-                <div className="mt-10 grid gap-7 border-t border-black/10 pt-7 md:grid-cols-2">
-                  <p className="max-w-xl text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
+              {/* RIGHT COLUMN: GLASS NARRATIVE CARD */}
+              <div className="lg:col-span-5">
+                <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-white/70 p-7 sm:p-9 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-md">
+                  <div className="absolute top-0 right-0 h-24 w-24 rounded-bl-full bg-[#d42f92]/5 pointer-events-none" />
+
+                  {/* SUBTITLE */}
+                  <div className="border-l-2 border-[#d42f92] pl-4 py-1">
+                    <p className="font-serif text-lg italic text-neutral-900 sm:text-xl leading-snug">
+                      A space built for people who want to move from ambition to action.
+                    </p>
+                  </div>
+
+                  {/* MAIN PARAGRAPH */}
+                  <p className="mt-6 text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
                     Studio I is a venture-building space where companies,
                     founders, creators and investors come together to turn
-                    ambition into action.
+                    ambition into action. We bring ideas, expertise and
+                    opportunity closer, creating room for ventures to begin,
+                    businesses to grow and collaborations to take shape.
                   </p>
 
-                  <p className="max-w-xl text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
-                    We bring ideas, expertise and opportunity closer, creating
-                    room for ventures to begin, businesses to grow and
-                    collaborations to take shape.
-                  </p>
+                  {/* FOOTNOTE TAG */}
+                  <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-5">
+                    <span className="text-xs font-mono font-medium uppercase tracking-wider text-neutral-400">
+                      Studio I &bull; Jaipur, India
+                    </span>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#d42f92]/10 text-[#d42f92]">
+                      <Sparkles className="h-4 w-4" />
+                    </span>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
         {/* ================= FEATURED SHOWCASE IMAGE ================= */}
-        <section className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-[1440px] px-6 py-10 sm:px-8 lg:px-12 lg:py-14">
           <div className="relative w-full aspect-[16/10] sm:aspect-[16/8.5] min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] rounded-2xl sm:rounded-[32px] overflow-hidden bg-neutral-900 shadow-lg border border-black/10 group">
             <Image
               src="/images/code 2.webp"
@@ -124,137 +144,196 @@ export default function AboutPage() {
         </section>
 
         {/* ================= ECOSYSTEM ================= */}
-        <section className="mx-auto max-w-[1440px] px-4 py-4 sm:px-4 lg:px-6 lg:py-8">
-          <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <Eyebrow>The ecosystem</Eyebrow>
+        <section className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 items-start">
+            {/* LEFT COLUMN: Narrative & Eyebrow */}
+            <div className="lg:col-span-6 flex flex-col justify-between">
+              <div>
+                <Eyebrow>The Ecosystem</Eyebrow>
 
-                <h2 className="mt-6 max-w-sm font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl">
-                  Two years of building alongside ambition.
+                <h2 className="mt-6 font-serif text-3xl leading-[1.35] tracking-tight text-neutral-900 sm:text-4xl lg:text-[2.5rem]">
+                  For over two years, we have been building and working with
+                  companies, navigating the decisions, challenges and
+                  breakthroughs that come with creating something of your own.
                 </h2>
+              </div>
+
+              <div className="mt-8 border-l-2 border-[#d42f92] pl-6 py-1">
+                <p className="text-base sm:text-lg leading-7 text-neutral-600">
+                  Along the way, we have seen how much can change when the right
+                  people enter the conversation.
+                </p>
               </div>
             </div>
 
-            <div className="lg:col-span-8">
-              <p className="max-w-3xl font-serif text-2xl leading-[1.45] text-neutral-800 sm:text-3xl lg:text-[2.4rem]">
-                For over two years, we have been building and working with
-                companies, navigating the decisions, challenges and
-                breakthroughs that come with creating something of your own.
-              </p>
-
-              <p className="mt-10 max-w-3xl text-lg leading-8 text-neutral-600">
-                Along the way, we have seen how much can change when the right
-                people enter the conversation.
-              </p>
-
-              {/* Conversation list */}
-              <div className="mt-14 divide-y divide-black/10 border-y border-black/10">
+            {/* RIGHT COLUMN: Interactive Cards & Callout */}
+            <div className="lg:col-span-6 flex flex-col gap-4">
+              <div className="space-y-4">
                 {conversations.map((item, index) => (
                   <div
                     key={item}
-                    className="group flex items-baseline gap-6 py-7"
+                    className="group relative flex items-center gap-5 rounded-2xl border border-black/10 bg-white/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-[#d42f92]/40 hover:bg-white hover:shadow-lg hover:-translate-y-1"
                   >
-                    <span className="w-8 shrink-0 font-serif text-sm text-neutral-400 transition-colors duration-300 group-hover:text-[#d42f92]">
-                      {`0${index + 1}`}
-                    </span>
-                    <p className="font-serif text-xl italic leading-snug text-neutral-600 transition-all duration-300 group-hover:translate-x-2 group-hover:text-neutral-950 sm:text-2xl">
-                      {item}
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-black/10 bg-[#F7F6F2] font-mono text-sm font-bold text-[#d42f92] transition-colors duration-300 group-hover:border-[#d42f92]/30 group-hover:bg-[#d42f92] group-hover:text-white">
+                      0{index + 1}
+                    </div>
+
+                    <p className="font-serif text-lg italic leading-snug text-neutral-800 transition-colors duration-300 group-hover:text-neutral-950 sm:text-xl">
+                      &ldquo;{item}&rdquo;
                     </p>
+
+                    <div className="ml-auto opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                      <Sparkles className="h-5 w-5 text-[#d42f92]" />
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-10 font-serif text-2xl italic text-neutral-950 sm:text-3xl">
-                Studio I brings that ecosystem together.
-              </p>
+              {/* CLOSING CALLOUT CARD */}
+              <div className="mt-2 relative overflow-hidden rounded-2xl bg-[#15120F] p-6 sm:p-8 text-white shadow-md">
+                <div className="absolute right-[-40px] top-[-40px] h-32 w-32 rounded-full bg-[#d42f92]/30 blur-2xl pointer-events-none" />
+                <div className="relative z-10 flex items-center justify-between gap-4">
+                  <p className="font-serif text-xl italic sm:text-2xl text-white/95">
+                    Studio I brings that ecosystem together.
+                  </p>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-[#d42f92] border border-white/15">
+                    <Sparkles className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ================= LEARNING ================= */}
-        <section className="border-y border-black/10 bg-white/40">
-          <div className="mx-auto max-w-[1440px] px-5 py-4 sm:px-4 lg:px-6 lg:py-6">
-            <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
-              <div className="lg:col-span-4">
-                <Eyebrow>Shared growth</Eyebrow>
+        {/* ================= SHARED GROWTH ================= */}
+        <section className="relative border-y border-black/10 bg-gradient-to-b from-[#F7F6F2] via-white/50 to-[#F7F6F2] py-14 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
 
-                <h2 className="mt-6 max-w-sm font-serif text-4xl leading-tight tracking-tight sm:text-5xl">
-                  Learn beside people who are building too.
-                </h2>
-              </div>
+              {/* LEFT COLUMN: Heading & Core Narrative */}
+              <div className="lg:col-span-5 flex flex-col justify-between">
+                <div>
+                  <Eyebrow>Shared growth</Eyebrow>
 
-              <div className="lg:col-span-8">
-                <div className="grid gap-10 md:grid-cols-2">
-                  <p className="text-lg leading-8 text-neutral-600">
+                  <h2 className="mt-6 font-serif text-4xl leading-[1.08] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+                    Learn beside people who are building too.
+                  </h2>
+
+                  <p className="mt-8 text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
                     At Studio I, founders work on their own ventures while
                     learning from the expertise, perspectives and experiences
                     of others building alongside them.
                   </p>
-
-                  <p className="text-lg leading-8 text-neutral-600">
-                    Conversations move beyond introductions into shared
-                    projects, practical answers and new opportunities. Each
-                    company keeps its own direction, with more people to learn
-                    from along the way.
-                  </p>
                 </div>
 
-                <div className="mt-6 flex items-center gap-5 border-t border-black/10 pt-6">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#d42f92]/20 bg-[#d42f92]/10">
-                    <Sparkles className="h-5 w-5 text-[#d42f92]" />
+                {/* BOTTOM KEY HIGHLIGHT BADGE */}
+                <div className="mt-10 flex items-center gap-4 rounded-2xl border border-[#d42f92]/20 bg-[#d42f92]/5 p-5 backdrop-blur-sm">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#d42f92] text-white shadow-md">
+                    <Sparkles className="h-5 w-5" />
                   </div>
-
                   <div>
-                    <p className="text-sm text-neutral-400">The idea</p>
-                    <p className="mt-1 font-serif text-xl">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">The Principle</p>
+                    <p className="font-serif text-lg font-medium text-neutral-900 sm:text-xl">
                       Independent ventures. Shared momentum.
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* RIGHT COLUMN: 3 Interactive Feature Cards */}
+              <div className="lg:col-span-7 flex flex-col gap-4">
+                <div className="group relative rounded-2xl border border-black/10 bg-white/80 p-7 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-[#d42f92]/40 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                  <div className="flex items-start gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F7F6F2] border border-black/10 text-[#d42f92] transition-colors duration-300 group-hover:bg-[#d42f92] group-hover:text-white">
+                      <Users className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-medium text-neutral-950 sm:text-2xl">
+                        Beyond Introductions
+                      </h3>
+                      <p className="mt-2 text-base leading-7 text-neutral-600">
+                        Conversations move beyond superficial networking into shared projects, practical answers, and meaningful collaboration.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative rounded-2xl border border-black/10 bg-white/80 p-7 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-[#d42f92]/40 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                  <div className="flex items-start gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F7F6F2] border border-black/10 text-[#d42f92] transition-colors duration-300 group-hover:bg-[#d42f92] group-hover:text-white">
+                      <Compass className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-medium text-neutral-950 sm:text-2xl">
+                        Autonomous Direction
+                      </h3>
+                      <p className="mt-2 text-base leading-7 text-neutral-600">
+                        Each company keeps its own distinct vision and direction, supported by more people to learn from along the way.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative rounded-2xl border border-black/10 bg-white/80 p-7 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-[#d42f92]/40 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                  <div className="flex items-start gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F7F6F2] border border-black/10 text-[#d42f92] transition-colors duration-300 group-hover:bg-[#d42f92] group-hover:text-white">
+                      <Share2 className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-medium text-neutral-950 sm:text-2xl">
+                        Collective Experience
+                      </h3>
+                      <p className="mt-2 text-base leading-7 text-neutral-600">
+                        Leverage real-time insights and hard-won lessons from fellow founders facing similar scaling challenges.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ================= RUNWAY ================= */}
-        <section className="px-4 py-16 sm:px-8 lg:px-12 lg:py-24">
-          <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-[#15120F] text-white sm:rounded-[48px]">
-            <div className="absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#d42f92]/30 blur-[110px]" />
-            <div className="absolute -bottom-40 left-[15%] h-[400px] w-[400px] rounded-full bg-white/5 blur-[100px]" />
+        <section className="mx-auto max-w-[1440px] px-5 py-6 sm:px-8 lg:px-12 lg:py-10">
+          <div className="relative overflow-hidden rounded-3xl bg-[#15120F] text-white sm:rounded-[36px] shadow-2xl">
+            {/* Background Ambient Glows */}
+            <div className="pointer-events-none absolute -right-24 -top-24 h-[350px] w-[350px] rounded-full bg-[#d42f92]/25 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-32 left-[10%] h-[320px] w-[320px] rounded-full bg-white/5 blur-[90px]" />
 
-            <div className="relative z-10 grid min-h-[620px] grid-cols-1 gap-14 p-8 sm:p-12 lg:grid-cols-12 lg:p-20">
+            <div className="relative z-10 grid grid-cols-1 gap-8 p-7 sm:p-10 lg:grid-cols-12 lg:gap-12 lg:p-12 items-start">
+              {/* LEFT: Eyebrow */}
               <div className="lg:col-span-4">
                 <Eyebrow light>Our philosophy</Eyebrow>
               </div>
 
-              <div className="flex flex-col justify-between lg:col-span-8">
+              {/* RIGHT: Headline, Motif & Compact Paragraph */}
+              <div className="flex flex-col lg:col-span-8 gap-6">
                 <div>
-                  <h2 className="max-w-4xl font-serif text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-8xl">
+                  <h2 className="max-w-4xl font-serif text-4xl leading-[0.98] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
                     Studio I is a runway.
                   </h2>
 
-                  {/* runway strip motif — the one deliberate motion moment */}
-                  <div className="relative mt-10 h-[3px] w-full max-w-md overflow-hidden rounded-full">
+                  {/* Animated runway strip motif */}
+                  <div className="relative mt-6 h-[3px] w-full max-w-xs overflow-hidden rounded-full">
                     <div
                       className="runway-strip absolute inset-y-0 left-0 w-[200%]"
                       style={{
                         backgroundImage:
-                          "repeating-linear-gradient(90deg, #d42f92 0px, #d42f92 24px, transparent 24px, transparent 52px)",
+                          "repeating-linear-gradient(90deg, #d42f92 0px, #d42f92 20px, transparent 20px, transparent 44px)",
                       }}
                     />
                   </div>
                 </div>
 
-                <div className="mt-16 grid gap-10 border-t border-white/15 pt-8 md:grid-cols-2">
-                  <p className="text-lg leading-8 text-neutral-300">
-                    A place where ideas gather momentum, people find
-                    possibility and beginnings find direction.
-                  </p>
-
-                  <p className="text-lg leading-8 text-neutral-300">
-                    Where the distance between thinking about something and
-                    taking the first step becomes a little smaller.
+                {/* TEXT PARAGRAPH RIGHT BELOW MOTIF */}
+                <div className="border-t border-white/15 pt-5">
+                  <p className="max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg sm:leading-8">
+                    A place where ideas gather momentum, people find possibility
+                    and beginnings find direction — where the distance between
+                    thinking about something and taking the first step becomes a
+                    little smaller.
                   </p>
                 </div>
               </div>
@@ -263,98 +342,123 @@ export default function AboutPage() {
         </section>
 
         {/* ================= FIVE Is ================= */}
-        <section className="mx-auto max-w-[1440px] px-4 py-4 sm:px-4 lg:px-6 lg:py-8">
-          <div className="mb-6 grid gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <Eyebrow>The five I&apos;s</Eyebrow>
-            </div>
-
-            <div className="lg:col-span-8">
-              <h2 className="max-w-4xl font-serif text-4xl leading-[1.05] tracking-tight sm:text-6xl">
-                The “I” carries the ambition behind it all.
-              </h2>
-            </div>
+        <section className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+          {/* HEADING WITH INTEGRATED LINE */}
+          <div className="mb-10 flex items-center gap-6">
+            <h2 className="shrink-0 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight text-neutral-950 font-medium">
+              The Five I&apos;s
+            </h2>
+            <div className="h-[1px] w-full bg-black/15" />
           </div>
 
+          {/* INTERACTIVE PILLARS LIST */}
           <div className="border-t border-black/15">
-            {fiveIs.map((pillar) => (
-              <div
-                key={pillar.title}
-                className="group relative grid cursor-default grid-cols-1 items-center gap-5 border-b border-black/15 py-6 transition-all duration-300 sm:grid-cols-12 sm:py-6"
-              >
-                <div className="sm:col-span-2">
-                  <span className="font-mono text-sm text-[#d42f92]">
-                    {pillar.number}
-                  </span>
+            {fiveIs.map((pillar, index) => {
+              const isActive = activePillar === index;
+              return (
+                <div
+                  key={pillar.title}
+                  onMouseEnter={() => setActivePillar(index)}
+                  onClick={() => setActivePillar(index)}
+                  className={`group relative grid cursor-pointer grid-cols-1 items-center gap-4 border-b border-black/15 py-5 sm:py-6 lg:py-7 transition-all duration-300 sm:grid-cols-12 sm:gap-6 ${isActive ? "bg-black/[0.015] px-4 -mx-4 rounded-xl sm:px-6 sm:-mx-6" : "hover:bg-black/[0.008]"
+                    }`}
+                >
+                  {/* NUMBER */}
+                  <div className="flex items-center gap-2.5 sm:col-span-2">
+                    <span className={`font-mono text-sm font-semibold tracking-wider transition-colors duration-300 ${isActive ? "text-[#d42f92]" : "text-neutral-400 group-hover:text-[#d42f92]"
+                      }`}>
+                      {pillar.number}
+                    </span>
+                    {isActive && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#d42f92] animate-pulse" />
+                    )}
+                  </div>
+
+                  {/* TITLE */}
+                  <div className="sm:col-span-5">
+                    <h3 className={`font-serif text-2xl tracking-tight transition-all duration-300 sm:text-3xl lg:text-3xl ${isActive ? "translate-x-2 text-neutral-950 font-medium" : "text-neutral-800 group-hover:translate-x-2 group-hover:text-neutral-950"
+                      }`}>
+                      {pillar.title}
+                      <span className="text-[#d42f92]"></span>
+                    </h3>
+                  </div>
+
+                  {/* TAGLINE & INTERACTIVE ICON */}
+                  <div className="flex items-center justify-between gap-5 sm:col-span-5">
+                    <p className={`text-base sm:text-lg transition-colors duration-300 ${isActive ? "text-neutral-900 font-medium" : "text-neutral-500 group-hover:text-neutral-800"
+                      }`}>
+                      {pillar.tagline}
+                    </p>
+
+                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isActive
+                      ? "border-[#d42f92] bg-[#d42f92] text-white rotate-45 scale-105 shadow-sm"
+                      : "border-black/15 text-neutral-400 group-hover:border-black/30 group-hover:text-neutral-900 group-hover:rotate-45"
+                      }`}>
+                      <ArrowUpRight className="h-5 w-5" />
+                    </div>
+                  </div>
+
+                  {/* ACTIVE PINK ACCENT LINE */}
+                  <span className={`absolute bottom-[-1px] left-0 h-[2px] bg-[#d42f92] transition-all duration-500 ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`} />
                 </div>
-
-                <div className="sm:col-span-5">
-                  <h3 className="font-serif text-3xl tracking-tight transition-transform duration-300 group-hover:translate-x-3 sm:text-5xl">
-                    {pillar.title}
-                    <span className="text-[#d42f92]">.</span>
-                  </h3>
-                </div>
-
-                <div className="flex items-center justify-between gap-5 sm:col-span-5">
-                  <p className="max-w-sm text-base text-neutral-500 sm:text-lg">
-                    {pillar.tagline}
-                  </p>
-
-                  <ArrowUpRight className="h-6 w-6 -translate-x-3 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-                </div>
-
-                <span className="absolute bottom-[-1px] left-0 h-[2px] w-0 bg-[#d42f92] transition-all duration-500 group-hover:w-full" />
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
-        {/* ================= CLOSING ================= */}
-        <section className="relative overflow-hidden bg-[#EAE8E1]">
-          <div className="pointer-events-none absolute bottom-[-250px] right-[-150px] h-[500px] w-[500px] rounded-full bg-[#d42f92]/10 blur-[100px]" />
+        {/* ================= CLOSING CTA SECTION ================= */}
+        <section className="relative overflow-hidden border-t border-black/10 bg-gradient-to-b from-[#F7F6F2] via-[#EAE8E1] to-[#F7F6F2] py-16 sm:py-24 lg:py-28">
+          {/* Ambient Background Glows */}
+          <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[450px] w-[600px] -translate-x-1/2 rounded-full bg-[#d42f92]/10 blur-[130px]" />
+          <div className="pointer-events-none absolute -top-24 right-10 h-[350px] w-[350px] rounded-full bg-black/5 blur-[100px]" />
 
-          <div className="relative mx-auto max-w-[1440px] px-5 py-6 sm:px-4 lg:px-4 lg:py-6">
-            <div className="grid gap-14 lg:grid-cols-12 max-sm:gap-4">
-              <div className="lg:col-span-3">
+          <div className="relative mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
+            <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+
+              {/* EYEBROW & BADGE */}
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 <Eyebrow>Our direction</Eyebrow>
+                <span className="hidden sm:inline-block h-1 w-1 rounded-full bg-black/20" />
+                <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-neutral-600 backdrop-blur-md">
+                  <Sparkles className="h-3 w-3 text-[#d42f92]" />
+                  <span>Let&apos;s Venture Beyond</span>
+                </span>
               </div>
 
-              <div className="lg:col-span-9">
-                <p className="max-w-5xl font-serif text-xl leading-[1.25] tracking-tight text-neutral-800 sm:text-2xl lg:text-2xl">
-                  A space that grows with the people and ventures within it,
-                  opening doors to what they can become.
-                </p>
+              {/* MAIN HEADLINE */}
+              <h2 className="mt-8 font-serif text-5xl leading-[0.98] tracking-[-0.04em] text-neutral-950 sm:text-7xl lg:text-8xl">
+                <span className="font-medium block">A place to begin.</span>
+                <span className="italic font-light text-neutral-600 block mt-2 sm:mt-3">
+                  A runway to become.
+                </span>
+              </h2>
 
-                <div className="mt-4 border-t border-black/15 pt-6">
-                  <h2 className="max-w-5xl font-serif text-[clamp(2rem,3vw,3.5rem)] leading-[0.95] tracking-[-0.04em]">
-                    <span className="font-medium">A place to begin.</span>
-                    <br />
-                    <span className="italic font-light text-neutral-700">
-                      A runway to become.
-                    </span>
-                  </h2>
+              {/* SUPPORTING TEXT */}
+              <p className="mt-8 max-w-2xl font-serif text-lg leading-relaxed text-neutral-700 sm:text-2xl lg:text-2xl">
+                A space that grows with the people and ventures within it,
+                opening doors to what they can become.
+              </p>
 
-                  <div className="mt-4 flex flex-col items-start justify-between gap-8 border-t border-black/10 pt-8 sm:flex-row sm:items-end">
-                    <div>
-                      <p className="text-sm text-neutral-400">Studio I</p>
-                      <p className="mt-2 font-serif text-2xl">
-                        Let&apos;s Venture Beyond.
-                      </p>
-                    </div>
+              {/* ACTION BUTTON */}
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+                <Link
+                  href="/companies"
+                  className="group relative inline-flex items-center gap-6 rounded-full bg-[#15120F] py-3.5 pl-8 pr-3 text-base font-semibold text-white shadow-xl transition-all duration-300 hover:bg-[#d42f92] hover:shadow-2xl hover:shadow-[#d42f92]/25 hover:scale-105 active:scale-95"
+                >
+                  <span>Explore Companies</span>
 
-                    <Link
-                      href="/companies"
-                      className="group inline-flex items-center gap-5 rounded-full bg-[#15120F] py-2 pl-7 pr-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#d42f92]"
-                    >
-                      <span>Explore Companies</span>
-
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:rotate-[-45deg]">
-                        <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:rotate-[-45deg]">
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
               </div>
+
+              {/* BRAND FOOTNOTE */}
+              <p className="mt-10 font-mono text-xs font-medium uppercase tracking-widest text-neutral-400">
+                Studio I &bull; Jaipur, India
+              </p>
+
             </div>
           </div>
         </section>
