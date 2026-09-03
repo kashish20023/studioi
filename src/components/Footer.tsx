@@ -131,7 +131,7 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM LEGAL BAR */}
-      <div className="border-t border-neutral-900 bg-[#030303] py-6 px-6 sm:px-8 lg:px-12">
+      {/* <div className="border-t border-neutral-900 bg-[#030303] py-6 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
           <p>&copy; 2026 InnovHer &amp; Studio i. All rights reserved.</p>
 
@@ -145,7 +145,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }
