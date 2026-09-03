@@ -15,7 +15,7 @@ export default function Navbar() {
 
           {/* LEFT: InnovHer & Studio i Logos */}
           <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3">
-            <Link href="https://innovher.com/" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
+            <Link href="https://innovher.com/" target="_blank" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
               <img
                 src="/innovherlogo.png"
                 alt="InnovHer Logo"
