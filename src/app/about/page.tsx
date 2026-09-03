@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
 
 function Eyebrow({
@@ -101,8 +102,29 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ================= FEATURED SHOWCASE IMAGE ================= */}
+        <section className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 lg:px-8">
+          <div className="relative w-full aspect-[16/10] sm:aspect-[16/8.5] min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] rounded-2xl sm:rounded-[32px] overflow-hidden bg-neutral-900 shadow-lg border border-black/10 group">
+            <Image
+              src="/images/code 2.webp"
+              alt="InnovHer & Google for Startups - AI Day for Startups"
+              fill
+              sizes="(max-width: 1440px) 100vw, 1440px"
+              className="object-cover object-[center_35%] group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-10 flex items-center gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wide text-white">
+                <Sparkles className="h-3.5 w-3.5 text-[#d42f92]" />
+                <span>InnovHer &amp; Google for Startups &middot; AI Day for Startups</span>
+              </span>
+            </div>
+          </div>
+        </section>
+
         {/* ================= ECOSYSTEM ================= */}
-        <section className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+        <section className="mx-auto max-w-[1440px] px-4 py-4 sm:px-4 lg:px-6 lg:py-8">
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
@@ -152,7 +174,7 @@ export default function AboutPage() {
 
         {/* ================= LEARNING ================= */}
         <section className="border-y border-black/10 bg-white/40">
-          <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-5 py-4 sm:px-4 lg:px-6 lg:py-6">
             <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <Eyebrow>Shared growth</Eyebrow>
@@ -178,7 +200,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="mt-16 flex items-center gap-5 border-t border-black/10 pt-10">
+                <div className="mt-6 flex items-center gap-5 border-t border-black/10 pt-6">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#d42f92]/20 bg-[#d42f92]/10">
                     <Sparkles className="h-5 w-5 text-[#d42f92]" />
                   </div>
@@ -241,8 +263,8 @@ export default function AboutPage() {
         </section>
 
         {/* ================= FIVE Is ================= */}
-        <section className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
-          <div className="mb-16 grid gap-8 lg:grid-cols-12">
+        <section className="mx-auto max-w-[1440px] px-4 py-4 sm:px-4 lg:px-6 lg:py-8">
+          <div className="mb-6 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <Eyebrow>The five I&apos;s</Eyebrow>
             </div>
@@ -258,7 +280,7 @@ export default function AboutPage() {
             {fiveIs.map((pillar) => (
               <div
                 key={pillar.title}
-                className="group relative grid cursor-default grid-cols-1 items-center gap-5 border-b border-black/15 py-8 transition-all duration-300 sm:grid-cols-12 sm:py-10"
+                className="group relative grid cursor-default grid-cols-1 items-center gap-5 border-b border-black/15 py-6 transition-all duration-300 sm:grid-cols-12 sm:py-6"
               >
                 <div className="sm:col-span-2">
                   <span className="font-mono text-sm text-[#d42f92]">
@@ -267,7 +289,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="sm:col-span-5">
-                  <h3 className="font-serif text-4xl tracking-tight transition-transform duration-300 group-hover:translate-x-3 sm:text-5xl">
+                  <h3 className="font-serif text-3xl tracking-tight transition-transform duration-300 group-hover:translate-x-3 sm:text-5xl">
                     {pillar.title}
                     <span className="text-[#d42f92]">.</span>
                   </h3>
@@ -291,20 +313,20 @@ export default function AboutPage() {
         <section className="relative overflow-hidden bg-[#EAE8E1]">
           <div className="pointer-events-none absolute bottom-[-250px] right-[-150px] h-[500px] w-[500px] rounded-full bg-[#d42f92]/10 blur-[100px]" />
 
-          <div className="relative mx-auto max-w-[1440px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
-            <div className="grid gap-14 lg:grid-cols-12">
+          <div className="relative mx-auto max-w-[1440px] px-5 py-6 sm:px-4 lg:px-4 lg:py-6">
+            <div className="grid gap-14 lg:grid-cols-12 max-sm:gap-4">
               <div className="lg:col-span-3">
                 <Eyebrow>Our direction</Eyebrow>
               </div>
 
               <div className="lg:col-span-9">
-                <p className="max-w-5xl font-serif text-3xl leading-[1.25] tracking-tight text-neutral-800 sm:text-5xl lg:text-6xl">
+                <p className="max-w-5xl font-serif text-xl leading-[1.25] tracking-tight text-neutral-800 sm:text-2xl lg:text-2xl">
                   A space that grows with the people and ventures within it,
                   opening doors to what they can become.
                 </p>
 
-                <div className="mt-24 border-t border-black/15 pt-10">
-                  <h2 className="max-w-5xl font-serif text-[clamp(3rem,6vw,6.5rem)] leading-[0.95] tracking-[-0.04em]">
+                <div className="mt-4 border-t border-black/15 pt-6">
+                  <h2 className="max-w-5xl font-serif text-[clamp(2rem,3vw,3.5rem)] leading-[0.95] tracking-[-0.04em]">
                     <span className="font-medium">A place to begin.</span>
                     <br />
                     <span className="italic font-light text-neutral-700">
@@ -312,7 +334,7 @@ export default function AboutPage() {
                     </span>
                   </h2>
 
-                  <div className="mt-14 flex flex-col items-start justify-between gap-8 border-t border-black/10 pt-8 sm:flex-row sm:items-end">
+                  <div className="mt-4 flex flex-col items-start justify-between gap-8 border-t border-black/10 pt-8 sm:flex-row sm:items-end">
                     <div>
                       <p className="text-sm text-neutral-400">Studio I</p>
                       <p className="mt-2 font-serif text-2xl">

@@ -65,7 +65,7 @@ export default function Footer() {
               <li>
                 <Link href="/library" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span>Resource Library</span>
+                  <span>Stories</span>
                 </Link>
               </li>
               <li>
@@ -81,7 +81,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#team" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
+                <Link href="/team" className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span>Our Team</span>
                 </Link>

@@ -15,7 +15,7 @@ export default function Navbar() {
 
           {/* LEFT: InnovHer & Studio i Logos */}
           <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3">
-            <Link href="/" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
+            <Link href="https://innovher.com/" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
               <img
                 src="/innovherlogo.png"
                 alt="InnovHer Logo"
@@ -50,15 +50,15 @@ export default function Navbar() {
               Companies
             </Link>
 
-            {/* Direct Library Link */}
+            {/* Direct Stories Link */}
             <Link
               href="/library"
               className="py-2 text-neutral-800 hover:text-black transition-colors"
             >
-              Library
+              Stories
             </Link>
 
-            {/* Studio i CENTER HIGHLIGHT BADGE (Image Logo) */}
+            {/* Studio i CENTER HIGHLIGHT BADGE */}
             <div className="px-1 flex items-center justify-center">
               <Link
                 href="/"
@@ -74,20 +74,20 @@ export default function Navbar() {
             </div>
 
             {/* Team */}
-            <a
-              href="#team"
+            <Link
+              href="/team"
               className="py-2 text-neutral-800 hover:text-black transition-colors"
             >
               Team
-            </a>
+            </Link>
 
             {/* Offering */}
-            <a
+            {/* <a
               href="#offering"
               className="py-2 text-neutral-800 hover:text-black transition-colors"
             >
               Offering
-            </a>
+            </a> */}
 
             {/* News & Events */}
             <Link
@@ -105,10 +105,10 @@ export default function Navbar() {
               href="https://accelerator.bharat-ventures.com/apply"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-black hover:bg-neutral-800 text-white text-sm font-semibold px-5 py-2 rounded-full transition-all duration-150 shadow-sm hover:shadow active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#d42f92] hover:bg-[#b8247d] text-white text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-[0_0_15px_rgba(212,47,146,0.35)] hover:shadow-[0_0_22px_rgba(212,47,146,0.6)] active:scale-95 cursor-pointer"
             >
-              <LayoutDashboard className="w-4 h-4 text-pink-600" />
-              <span>Dashboard</span>
+              <LayoutDashboard className="w-4 h-4 text-white" />
+              <span>Apply</span>
             </a>
           </div>
 
@@ -152,15 +152,15 @@ export default function Navbar() {
               className="px-3 py-2 rounded-md hover:bg-neutral-200/60 font-semibold text-neutral-900"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Library
+              Stories
             </Link>
-            <a
-              href="#team"
-              className="px-3 py-2 rounded-md hover:bg-neutral-200/60"
+            <Link
+              href="/team"
+              className="px-3 py-2 rounded-md hover:bg-neutral-200/60 font-semibold text-neutral-900"
               onClick={() => setMobileMenuOpen(false)}
             >
               Team
-            </a>
+            </Link>
             <a
               href="#offering"
               className="px-3 py-2 rounded-md hover:bg-neutral-200/60"
@@ -182,11 +182,11 @@ export default function Navbar() {
               href="https://accelerator.bharat-ventures.com/apply"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-black text-white py-2.5 rounded-full font-semibold"
+              className="w-full flex items-center justify-center gap-2 bg-[#d42f92] hover:bg-[#b8247d] text-white py-2.5 rounded-full font-semibold shadow-md"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <LayoutDashboard className="w-4 h-4 text-pink-400" />
-              <span>Dashboard</span>
+              <LayoutDashboard className="w-4 h-4 text-white" />
+              <span>Apply</span>
             </a>
           </div>
         </div>

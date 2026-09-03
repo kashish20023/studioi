@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import CompanyShowcase from "@/components/CompanyShowcase";
+import GameShowcaseSection from "@/components/GameShowcaseSection";
 import ValuationGrid from "@/components/ValuationGrid";
 import EditorialSection from "@/components/EditorialSection";
 import CommunityGridSection from "@/components/CommunityGridSection";
@@ -15,15 +16,18 @@ export default function Home() {
 
       {/* Main Content Area */}
       <main className="flex-1 w-full">
-        {/* YC Hero Section ("YC turns builders into formidable founders [1]") */}
+        {/* YC Hero Section */}
         <HeroSection />
 
-        {/* Premium Scroll-Driven Showcase Component ("During Studio -> Now") */}
+        {/* Premium Scroll-Driven Showcase Component */}
         <div id="showcase">
           <CompanyShowcase />
         </div>
 
-        {/* Valuation Grid ($1.3 Trillion combined valuation + 32 Startup Logos) */}
+        {/* Studio i Interactive Game Arcade Showcase Section (Placed right before "Adding Value") */}
+        <GameShowcaseSection />
+
+        {/* Valuation Grid ("Adding Value" - $1.3 Trillion combined valuation + 32 Startup Logos) */}
         <ValuationGrid />
 
         {/* Editorial Narrative Section */}

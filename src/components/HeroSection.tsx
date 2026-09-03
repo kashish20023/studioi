@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Sparkles, LayoutDashboard } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 
 export default function HeroSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [touchPos, setTouchPos] = useState({ x: 50, y: 35 });
-  const [isInteracting, setIsInteracting] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -35,20 +32,6 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Handle Touch/Pointer interaction for interactive light aura
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setTouchPos({ x, y });
-    setIsInteracting(true);
-  };
-
-  const handlePointerLeave = () => {
-    setIsInteracting(false);
-  };
-
   // Compute smooth scroll-driven opacity, scale, and translateY
   const opacity = Math.max(0, 1 - scrollProgress * 1.2);
   const translateY = -scrollProgress * 70;
@@ -62,42 +45,85 @@ export default function HeroSection() {
 
   return (
     <section
-      ref={containerRef}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      className="w-full bg-[#F6F6F2] min-h-[85vh] sm:min-h-[88vh] lg:min-h-[90vh] px-4 sm:px-4 md:px-4 lg:px-4 xl:px-4 font-sans select-none flex flex-col items-center justify-center relative overflow-hidden py-8 sm:py-16 md:py-20 touch-pan-y"
+      className="w-full bg-[#F6F6F2] min-h-[85vh] sm:min-h-[88vh] lg:min-h-[90vh] px-2 sm:px-4 font-sans select-none flex flex-col items-center justify-center relative overflow-hidden py-8 sm:py-16 md:py-20 touch-pan-y"
     >
+      {/* INJECTED ANIMATION KEYFRAMES */}
+      <style>{`
+        @keyframes heroEqualizerWave {
+          0%, 100% {
+            transform: scaleY(0.92);
+            filter: brightness(0.95);
+            opacity: 0.85;
+          }
+          40% {
+            transform: scaleY(1.18);
+            filter: brightness(1.35) drop-shadow(0 0 16px rgba(212, 47, 146, 0.45));
+            opacity: 1;
+          }
+          70% {
+            transform: scaleY(0.97);
+            filter: brightness(1.05);
+            opacity: 0.9;
+          }
+        }
+        @keyframes heroAuroraBreathe {
+          0%, 100% {
+            transform: translateY(-15px) scale(0.95);
+            opacity: 0.65;
+          }
+          50% {
+            transform: translateY(20px) scale(1.18);
+            opacity: 1;
+          }
+        }
+        @keyframes heroShimmerLight {
+          0% {
+            transform: translateX(-100%) skewX(-20deg);
+          }
+          100% {
+            transform: translateX(200%) skewX(-20deg);
+          }
+        }
+        .hero-bar-animate {
+          transform-origin: bottom center;
+          will-change: transform, filter, opacity;
+        }
+      `}</style>
 
-      {/* TOP AMBIENT RADIAL AURORA (Eliminates top white space on mobile) */}
-      <div className="absolute inset-x-0 top-0 h-[45%] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#d42f92]/20 via-[#d42f92]/5 to-transparent pointer-events-none z-0" />
-
-      {/* INTERACTIVE TOUCH / CURSOR LIGHT AURA */}
+      {/* TOP AMBIENT RADIAL AURORA (ANIMATED BREATHE) */}
       <div
-        className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-700 ease-out"
+        className="absolute inset-x-0 top-0 h-[55%] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#d42f92]/30 via-[#d42f92]/10 to-transparent pointer-events-none z-0"
         style={{
-          background: `radial-gradient(500px circle at ${touchPos.x}% ${touchPos.y}%, rgba(212, 47, 146, 0.28), transparent 70%)`,
-          opacity: isInteracting ? 1 : 0.45,
+          animation: "heroAuroraBreathe 6s ease-in-out infinite",
         }}
       />
 
-      {/* VECTOR BRAND PINK (#d42f92) STEP-GRADIENT V-ARENA BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-end justify-center p-2 max-sm:p-0 sm:p-4 md:p-6">
+      {/* VECTOR BRAND PINK (#d42f92) STEP-GRADIENT V-ARENA BACKGROUND FITTED TO HERO SECTION */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-end justify-center p-0">
 
-        {/* DESKTOP V-ARENA (12 BARS) */}
-        <div className="hidden sm:flex w-full h-full max-w-7xl xl:max-w-[1500px] 2xl:max-w-[1700px] relative items-end justify-between gap-1.5 sm:gap-2 md:gap-3 px-2 sm:px-6 md:px-10 pb-0">
+        {/* DESKTOP V-ARENA (12 BARS WITH RHYTHMIC EQUALIZER WAVE ANIMATION) */}
+        <div className="hidden sm:flex w-full h-full relative items-end justify-between gap-1.5 sm:gap-2 md:gap-3 px-2 sm:px-4 md:px-6 pb-0">
           {desktopBarHeights.map((heightPercent, index) => {
-            const alpha = 0.35 + (heightPercent / 100) * 0.55;
+            const alpha = 0.38 + (heightPercent / 100) * 0.58;
+            // Fluid wave delay propagating across bars from outer edge to center and back
+            const distanceFromCenter = Math.abs(5.5 - index);
+            const animationDelay = `${index * 0.22}s`;
+            const duration = `${3.2 + (distanceFromCenter * 0.2)}s`;
+
             return (
               <div
                 key={`desktop-bar-${index}`}
-                style={{ height: `${heightPercent}%` }}
-                className="flex-1 rounded-t-xl transition-all duration-500 relative overflow-hidden"
+                style={{
+                  height: `${heightPercent}%`,
+                  animation: `heroEqualizerWave ${duration} ease-in-out ${animationDelay} infinite`,
+                }}
+                className="flex-1 rounded-t-xl relative overflow-hidden hero-bar-animate"
               >
                 <div
                   className="w-full h-full rounded-t-xl"
                   style={{
-                    background: `linear-gradient(to top, rgba(212, 47, 146, ${alpha}) 0%, rgba(212, 47, 146, ${alpha * 0.45}) 60%, rgba(255, 255, 255, 0) 100%)`,
-                    boxShadow: "inset 0 1px 0 0 rgba(255, 255, 255, 0.4)",
+                    background: `linear-gradient(to top, rgba(212, 47, 146, ${alpha}) 0%, rgba(212, 47, 146, ${alpha * 0.5}) 60%, rgba(255, 255, 255, 0) 100%)`,
+                    boxShadow: "inset 0 1.5px 0 0 rgba(255, 255, 255, 0.45)",
                   }}
                 />
               </div>
@@ -106,21 +132,26 @@ export default function HeroSection() {
           <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 bg-gradient-to-t from-[#F6F6F2] via-[#F6F6F2]/40 to-transparent pointer-events-none" />
         </div>
 
-        {/* MOBILE V-ARENA (6 FULL-HEIGHT BALANCED WIDE BARS) */}
+        {/* MOBILE V-ARENA (6 BARS WITH RHYTHMIC EQUALIZER WAVE ANIMATION) */}
         <div className="flex sm:hidden w-full h-[88%] relative items-end justify-between gap-1.5 px-1 pb-0">
           {mobileBarHeights.map((heightPercent, index) => {
-            const alpha = 0.32 + (heightPercent / 100) * 0.48;
+            const alpha = 0.35 + (heightPercent / 100) * 0.52;
+            const animationDelay = `${index * 0.3}s`;
+
             return (
               <div
                 key={`mobile-bar-${index}`}
-                style={{ height: `${heightPercent}%` }}
-                className="flex-1 rounded-t-xl transition-all duration-500 relative overflow-hidden"
+                style={{
+                  height: `${heightPercent}%`,
+                  animation: `heroEqualizerWave 3.5s ease-in-out ${animationDelay} infinite`,
+                }}
+                className="flex-1 rounded-t-xl relative overflow-hidden hero-bar-animate"
               >
                 <div
                   className="w-full h-full rounded-t-xl"
                   style={{
-                    background: `linear-gradient(to top, rgba(212, 47, 146, ${alpha}) 0%, rgba(212, 47, 146, ${alpha * 0.35}) 65%, rgba(255, 255, 255, 0) 100%)`,
-                    boxShadow: "inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
+                    background: `linear-gradient(to top, rgba(212, 47, 146, ${alpha}) 0%, rgba(212, 47, 146, ${alpha * 0.4}) 65%, rgba(255, 255, 255, 0) 100%)`,
+                    boxShadow: "inset 0 1px 0 0 rgba(255, 255, 255, 0.35)",
                   }}
                 />
               </div>
@@ -147,28 +178,18 @@ export default function HeroSection() {
           built to scale, <span className="italic font-serif">lead and venture beyond.</span>
         </h1>
 
-        {/* 2. DASHBOARD ACTION BUTTON (Displayed after headline text and before quote citation) */}
+        {/* 2. DASHBOARD ACTION BUTTON */}
         <div className="pt-1 pb-1">
           <a
             href="https://accelerator.bharat-ventures.com/apply"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-neutral-950 hover:bg-neutral-800 text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer border border-neutral-800"
+            className="inline-flex items-center gap-2.5 bg-[#d42f92] hover:bg-[#b8247d] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(212,47,146,0.4)] hover:shadow-[0_0_30px_rgba(212,47,146,0.7)] hover:scale-105 active:scale-95 cursor-pointer border border-pink-400/40"
           >
-            <LayoutDashboard className="w-4 h-4 text-pink-500 animate-pulse" />
+            <LayoutDashboard className="w-4 h-4 text-white animate-pulse" />
             <span>Dashboard</span>
           </a>
         </div>
-
-        {/* 3. FOOTNOTE CITATION QUOTE */}
-        {/* <div className="max-w-[300px] sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto text-center space-y-1 sm:space-y-1.5 pt-1">
-          <p className="font-serif italic text-[11px] sm:text-xs md:text-sm lg:text-base text-neutral-800 sm:text-neutral-600 leading-relaxed">
-            [1] &quot;A formidable person is one who seems like they&apos;ll get what they want, regardless of whatever obstacles are in the way.&quot;
-          </p>
-          <p className="font-serif italic text-[10px] sm:text-xs md:text-sm text-neutral-500 tracking-wide">
-            &mdash; Paul Graham
-          </p>
-        </div> */}
 
       </div>
     </section>

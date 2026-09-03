@@ -78,49 +78,52 @@ export default function CompanyShowcase() {
       {/* STICKY VIEWPORT CONTAINER (Pins in viewport during scroll through companies) */}
       <div className="sticky top-16 h-[calc(100vh-64px)] w-full flex flex-col justify-between items-center overflow-hidden py-3 sm:py-5 px-4 sm:px-6 lg:px-8 xl:px-12">
 
-        {/* FLOATING INTERACTIVE ELLIPSE BADGE (Clickable to view detailed modal) */}
-        <div className="mb-2 z-20 flex-shrink-0">
-          <button
-            onClick={() => setSelectedModalStory(currentStory)}
-            className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-neutral-300/80 shadow-md hover:shadow-lg hover:border-neutral-400 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer text-xs sm:text-sm font-serif italic text-neutral-900"
-            title="Click to view detailed company story & metrics"
-          >
-            <span className="w-2 h-2 rounded-full bg-pink-600 animate-ping absolute left-3" />
-            <span className="w-2 h-2 rounded-full bg-pink-600 relative ml-0.5" />
-            <span className="font-semibold tracking-tight">Explore {currentStory.name} Details</span>
-            <Sparkles className="w-3.5 h-3.5 text-pink-600 group-hover:rotate-12 transition-transform duration-300 ml-0.5" />
-          </button>
-        </div>
-
-        {/* COMPANY SELECTOR NAVIGATION BUTTONS (Positioned ABOVE the cards) */}
-        <div className="mb-2 sm:mb-3 flex-shrink-0 flex items-center gap-2 overflow-x-auto max-w-full px-4 py-1 z-20 scrollbar-none flex-nowrap w-full justify-start sm:justify-center">
-          {stories.map((s, idx) => (
+        {/* MOBILE / TABLET TOP SELECTOR NAVIGATION (Visible ONLY on screens less than tablet view < lg) */}
+        <div className="lg:hidden flex flex-col items-center w-full flex-shrink-0">
+          {/* FLOATING INTERACTIVE ELLIPSE BADGE (Clickable to view detailed modal) */}
+          <div className="mb-2 z-20 flex-shrink-0">
             <button
-              key={`tab-${s.id}`}
-              onClick={() => {
-                scrollToCompany(idx);
-              }}
-              className={`px-4 py-2 text-xs sm:text-sm rounded-full transition-all duration-200 font-medium cursor-pointer whitespace-nowrap flex-shrink-0 inline-flex items-center justify-center leading-none ${idx === activeIndex
-                ? "bg-neutral-950 text-white shadow-md font-semibold scale-105"
-                : "bg-white/95 text-neutral-700 hover:bg-neutral-200 border border-neutral-300/80 shadow-xs hover:border-neutral-400"
-                }`}
+              onClick={() => setSelectedModalStory(currentStory)}
+              className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-neutral-300/80 shadow-md hover:shadow-lg hover:border-neutral-400 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer text-xs sm:text-sm font-serif italic text-neutral-900"
+              title="Click to view detailed company story & metrics"
             >
-              {s.name}
+              <span className="w-2 h-2 rounded-full bg-pink-600 animate-ping absolute left-3" />
+              <span className="w-2 h-2 rounded-full bg-pink-600 relative ml-0.5" />
+              <span className="font-semibold tracking-tight">Explore {currentStory.name} Details</span>
+              <Sparkles className="w-3.5 h-3.5 text-pink-600 group-hover:rotate-12 transition-transform duration-300 ml-0.5" />
             </button>
-          ))}
+          </div>
+
+          {/* COMPANY SELECTOR NAVIGATION BUTTONS (Positioned ABOVE the cards) */}
+          <div className="mb-2 sm:mb-3 flex-shrink-0 flex items-center gap-2 overflow-x-auto max-w-full px-4 py-1 z-20 scrollbar-none flex-nowrap w-full justify-start sm:justify-center">
+            {stories.map((s, idx) => (
+              <button
+                key={`tab-${s.id}`}
+                onClick={() => {
+                  scrollToCompany(idx);
+                }}
+                className={`px-4 py-2 text-xs sm:text-sm rounded-full transition-all duration-200 font-medium cursor-pointer whitespace-nowrap flex-shrink-0 inline-flex items-center justify-center leading-none ${idx === activeIndex
+                  ? "bg-neutral-950 text-white shadow-md font-semibold scale-105"
+                  : "bg-white/95 text-neutral-700 hover:bg-neutral-200 border border-neutral-300/80 shadow-xs hover:border-neutral-400"
+                  }`}
+              >
+                {s.name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* DESKTOP LAYOUT (12 Columns: 4 Left - 4 Center - 4 Right) */}
-        <div className="max-w-[1750px] w-full mx-auto hidden lg:grid grid-cols-12 gap-6 xl:gap-8 items-center flex-1 my-auto">
+        {/* DESKTOP LAYOUT (12 Columns: 5 Left Image - 2 Center Text - 5 Right Image) */}
+        <div className="max-w-[1850px] w-full mx-auto hidden lg:grid grid-cols-12 gap-4 xl:gap-6 items-center flex-1 my-auto">
 
-          {/* 1. LEFT COLUMN: "During Studio I" (4 Cols) */}
-          <div className="col-span-4 flex flex-col items-center text-center space-y-3">
+          {/* 1. LEFT COLUMN: "During Studio I" (5 Cols - Larger Image) */}
+          <div className="col-span-5 flex flex-col items-center text-center space-y-3">
             <h3 className="font-serif italic text-base sm:text-lg lg:text-xl text-neutral-800 font-medium">
               During Studio I
             </h3>
 
             {/* Direct Edge-to-Edge Image Container (Massive Height & Aspect Ratio) */}
-            <div className="relative w-full aspect-[4/3] lg:aspect-[1.15/1] xl:aspect-[1.2/1] 2xl:aspect-[1.25/1] min-h-[420px] lg:min-h-[500px] xl:min-h-[580px] 2xl:min-h-[640px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
+            <div className="relative w-full aspect-[4/3.8] lg:aspect-[1/1] xl:aspect-[1/1.05] 2xl:aspect-[1/1.1] min-h-[380px] lg:min-h-[440px] xl:min-h-[500px] 2xl:min-h-[560px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 const imgSrc: string = story.duringImage || story.duringFallback || "";
@@ -141,7 +144,7 @@ export default function CompanyShowcase() {
                       alt={`${story.name} During Studio I`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 45vw"
-                      className="object-cover rounded-2xl"
+                      className={`object-cover ${story.duringObjectPosition || "object-center"} rounded-2xl`}
                       priority={idx === 0}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
@@ -174,8 +177,8 @@ export default function CompanyShowcase() {
             </div>
           </div>
 
-          {/* 2. CENTER COLUMN: Vertical Drum Wheel List (4 Cols - Wide enough for all names) */}
-          <div className="col-span-4 flex flex-col items-center justify-center select-none relative h-[440px] lg:h-[520px] xl:h-[580px] overflow-hidden">
+          {/* 2. CENTER COLUMN: Vertical Drum Wheel List (2 Cols - Compact Text Grid) */}
+          <div className="col-span-2 flex flex-col items-center justify-center select-none relative h-[440px] lg:h-[520px] xl:h-[580px] overflow-hidden px-1">
 
             {/* Focal Highlight Box Background */}
             <div className="absolute inset-x-0 h-16 top-1/2 -translate-y-1/2 rounded-xl pointer-events-none transition-all duration-300 drop-shadow-lg" />
@@ -199,16 +202,16 @@ export default function CompanyShowcase() {
                       scrollToCompany(idx);
                       setSelectedModalStory(story);
                     }}
-                    className={`group relative text-center focus:outline-none transition-all duration-500 cursor-pointer h-12 flex items-center justify-center px-2 ${isActive ? "scale-105" : "hover:scale-105"
+                    className={`group relative text-center focus:outline-none transition-all duration-500 cursor-pointer h-12 flex items-center justify-center px-1 w-full ${isActive ? "scale-105" : "hover:scale-105"
                       }`}
                     title={`Click to view full details for ${story.name}`}
                   >
                     <span
-                      className={`font-serif tracking-tight transition-all duration-500 block text-center ${isActive
-                        ? "text-xl lg:text-2xl xl:text-3xl font-bold text-neutral-950 opacity-100"
+                      className={`font-serif tracking-tight transition-all duration-500 block text-center whitespace-nowrap ${isActive
+                        ? "text-lg lg:text-xl xl:text-2xl font-bold text-neutral-950 opacity-100"
                         : distance === 1
-                          ? "text-base xl:text-lg font-normal text-neutral-400 opacity-40 hover:opacity-75"
-                          : "text-sm xl:text-base font-normal text-neutral-300 opacity-20 hover:opacity-50"
+                          ? "text-sm xl:text-base font-normal text-neutral-400 opacity-40 hover:opacity-75"
+                          : "text-xs xl:text-sm font-normal text-neutral-300 opacity-20 hover:opacity-50"
                         }`}
                     >
                       {story.name}
@@ -220,14 +223,14 @@ export default function CompanyShowcase() {
 
           </div>
 
-          {/* 3. RIGHT COLUMN: "Now" (4 Cols) */}
-          <div className="col-span-4 flex flex-col items-center text-center space-y-3">
+          {/* 3. RIGHT COLUMN: "Now" (5 Cols - Larger Image) */}
+          <div className="col-span-5 flex flex-col items-center text-center space-y-3">
             <h3 className="font-serif italic text-base sm:text-lg lg:text-xl text-neutral-800 font-medium">
               Now
             </h3>
 
             {/* Direct Edge-to-Edge Image Container (Massive Height & Aspect Ratio) */}
-            <div className="relative w-full aspect-[4/3] lg:aspect-[1.15/1] xl:aspect-[1.2/1] 2xl:aspect-[1.25/1] min-h-[420px] lg:min-h-[500px] xl:min-h-[580px] 2xl:min-h-[640px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
+            <div className="relative w-full aspect-[4/3.8] lg:aspect-[1/1] xl:aspect-[1/1.05] 2xl:aspect-[1/1.1] min-h-[380px] lg:min-h-[440px] xl:min-h-[500px] 2xl:min-h-[560px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 const imgSrc: string = story.nowImage || story.nowFallback || "";
@@ -248,7 +251,7 @@ export default function CompanyShowcase() {
                       alt={`${story.name} Now`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 45vw"
-                      className="object-cover rounded-2xl"
+                      className={`object-cover ${story.nowObjectPosition || "object-center"} rounded-2xl`}
                       priority={idx === 0}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
@@ -311,7 +314,7 @@ export default function CompanyShowcase() {
                       alt={`${s.name} During Studio I`}
                       fill
                       sizes="50vw"
-                      className="object-cover rounded-xl sm:rounded-2xl"
+                      className={`object-cover ${s.duringObjectPosition || "object-center"} rounded-xl sm:rounded-2xl`}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         if (s.duringFallback) target.src = s.duringFallback;
@@ -357,7 +360,7 @@ export default function CompanyShowcase() {
                       alt={`${s.name} Now`}
                       fill
                       sizes="50vw"
-                      className="object-cover rounded-xl sm:rounded-2xl"
+                      className={`object-cover ${s.nowObjectPosition || "object-center"} rounded-xl sm:rounded-2xl`}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         if (s.nowFallback) target.src = s.nowFallback;
