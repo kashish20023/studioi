@@ -144,7 +144,7 @@ export default function AboutPage() {
         </section>
 
         {/* ================= ECOSYSTEM ================= */}
-        <section className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+        <section className="mx-auto max-w-[1440px] px-6 py-12 sm:px-4 lg:px-6 lg:py-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 items-start">
             {/* LEFT COLUMN: Narrative & Eyebrow */}
             <div className="lg:col-span-6 flex flex-col justify-between">
