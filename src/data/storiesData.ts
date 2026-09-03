@@ -58,7 +58,7 @@ export const stories: Story[] = [
     valuation: "$107B Peak Valuation",
     category: "Fintech & Global Payments Infrastructure",
     founders: "Patrick Collison, John Collison",
-    duringImage: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+    duringImage: "/images/bax.webp",
     nowImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
     duringObjectPosition: "object-center",
     nowObjectPosition: "object-center",
