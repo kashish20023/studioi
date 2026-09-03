@@ -9,7 +9,7 @@ export default function Footer() {
       {/* MAIN FOOTER CONTENT CONTAINER */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
-          
+
           {/* COLUMN 1: BRAND LOGO & STATEMENT (5 Cols) */}
           <div className="md:col-span-5 space-y-6">
             {/* EXACT HEADER LOGO DISPLAY */}
@@ -115,8 +115,7 @@ export default function Footer() {
             </div>
 
             {/* HORIZONTAL DIVIDER */}
-            <div className="border-t border-neutral-800/90 pt-4">
-              {/* AVAILABILITY BLOCK */}
+            {/* <div className="border-t border-neutral-800/90 pt-4">
               <div className="space-y-2">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-neutral-400">
                   AVAILABILITY
@@ -125,7 +124,7 @@ export default function Footer() {
                   Available Daily: 7am &ndash; 11pm
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
         </div>
