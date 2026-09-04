@@ -124,8 +124,9 @@ export default function CommunityGridSection() {
                   willChange: "opacity, transform",
                   transform: isVisible ? "translate3d(0,0,0) scale(1)" : "translate3d(0, 2rem, 0) scale(0.95)",
                 }}
-                className={`group relative aspect-[4/3] rounded-[16px] overflow-hidden bg-neutral-200 shadow-md border border-neutral-300/60 transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "opacity-100" : "opacity-0"
-                  }`}
+                className={`group relative aspect-[4/3] rounded-[16px] overflow-hidden bg-neutral-200 shadow-md border border-neutral-300/60 transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                } ${idx >= 8 ? "hidden sm:block" : ""}`}
               >
                 <Image
                   src={photo.src}

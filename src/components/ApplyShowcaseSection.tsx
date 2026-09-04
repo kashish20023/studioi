@@ -101,8 +101,9 @@ export default function ApplyShowcaseSection() {
                 willChange: "opacity, transform",
                 transform: isVisible ? "translate3d(0,0,0) scale(1)" : "translate3d(0, 2rem, 0) scale(0.95)",
               }}
-              className={`group relative w-full aspect-[4/5] rounded-[14px] overflow-hidden bg-neutral-200 border border-neutral-300/60 shadow-sm transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "opacity-100" : "opacity-0"
-                }`}
+              className={`group relative w-full aspect-[4/5] rounded-[14px] overflow-hidden bg-neutral-200 border border-neutral-300/60 shadow-sm transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              } ${idx >= 4 ? "hidden sm:block" : ""}`}
             >
               <Image
                 src={photo.src}

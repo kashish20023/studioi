@@ -62,23 +62,25 @@ export default function GameShowcaseSection() {
             </p>
 
             {/* ATTRACTIVE GAME LINK BUTTON */}
-            <div className="pt-2 flex flex-wrap cursor-pointer items-center gap-4">
+            <div className="pt-2 flex flex-wrap cursor-pointer items-center gap-4 w-full sm:w-auto">
               <a
                 href="https://game.studioi.in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative cursor-pointer inline-flex items-center gap-3.5 bg-gradient-to-r from-[#d42f92] via-pink-600 to-purple-600 text-white font-extrabold text-base sm:text-lg px-8 py-4 rounded-full shadow-[0_0_30px_rgba(212,47,146,0.6)] hover:shadow-[0_0_45px_rgba(212,47,146,0.9)] hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden border border-white/30 cursor-pointer"
+                className="group relative cursor-pointer inline-flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 w-full sm:w-auto bg-gradient-to-r from-[#d42f92] via-pink-600 to-purple-600 text-white font-extrabold text-xs sm:text-lg px-4 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(212,47,146,0.6)] hover:shadow-[0_0_45px_rgba(212,47,146,0.9)] hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden border border-white/30 cursor-pointer"
               >
                 {/* Shimmer Light Beam Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/35 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
 
-                <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white text-white group-hover:text-[#d42f92] transition-colors duration-300">
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
+                <span className="relative z-10 flex shrink-0 items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 group-hover:bg-white text-white group-hover:text-[#d42f92] transition-colors duration-300">
+                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current ml-0.5" />
                 </span>
 
-                <span className="relative z-10 tracking-wide">PLAY GAME AT GAME.STUDIOI.IN</span>
+                <span className="relative z-10 tracking-tight sm:tracking-wide text-center whitespace-nowrap">
+                  PLAY GAME AT GAME.STUDIOI.IN
+                </span>
 
-                <ExternalLink className="relative z-10 w-5 h-5 text-white/90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ExternalLink className="relative z-10 shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-white/90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </div>

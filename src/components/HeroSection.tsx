@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { LayoutDashboard } from "lucide-react";
 
 export default function HeroSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -178,18 +177,7 @@ export default function HeroSection() {
           built to scale, <span className="italic font-serif">lead and venture beyond.</span>
         </h1>
 
-        {/* 2. DASHBOARD ACTION BUTTON */}
-        <div className="pt-1 pb-1">
-          <a
-            href="https://accelerator.bharat-ventures.com/apply"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-[#d42f92] hover:bg-[#b8247d] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(212,47,146,0.4)] hover:shadow-[0_0_30px_rgba(212,47,146,0.7)] hover:scale-105 active:scale-95 cursor-pointer border border-pink-400/40"
-          >
-            <LayoutDashboard className="w-4 h-4 text-white animate-pulse" />
-            <span>Dashboard</span>
-          </a>
-        </div>
+
 
       </div>
     </section>
