@@ -369,7 +369,7 @@ export default function CompanyShowcase() {
                   </div>
                 ))}
               </div>
-              {/* <div className="relative min-h-[48px] w-full flex items-center justify-center pt-1 px-1">
+              <div className="relative min-h-[48px] w-full flex items-center justify-center pt-1 px-1">
                 {stories.map((s, idx) => (
                   <p
                     key={`mob-now-cap-${s.id}`}
@@ -381,7 +381,7 @@ export default function CompanyShowcase() {
                     {s.nowCaption}
                   </p>
                 ))}
-              </div>  */}
+              </div>
             </div>
           </div>
 
