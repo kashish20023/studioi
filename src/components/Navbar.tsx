@@ -11,10 +11,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#F6F6F2]/95 backdrop-blur-md border-b border-neutral-200/80 shadow-xs select-none transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
+        <div className="relative flex items-center justify-between h-16 sm:h-18">
 
-          {/* LEFT: InnovHer & Studio i Logos */}
-          <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3">
+          {/* LEFT: InnovHer Logo */}
+          <div className="flex-shrink-0 flex items-center relative z-10">
             <Link href="https://innovher.com/" target="_blank" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
               <img
                 src="/innovherlogo.png"
@@ -22,8 +22,11 @@ export default function Navbar() {
                 className="h-6 sm:h-8 max-h-9 w-auto object-contain transition-all"
               />
             </Link>
-            <span className="text-neutral-300 text-sm sm:text-base font-light lg:hidden">|</span>
-            <Link href="/" className="flex lg:hidden items-center group transition-transform duration-200 hover:scale-[1.02]">
+          </div>
+
+          {/* CENTER (MOBILE): Studio i Logo */}
+          <div className="lg:hidden absolute left-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
+            <Link href="/" className="flex items-center group transition-transform duration-200 hover:scale-[1.02]">
               <img
                 src="/studio.png"
                 alt="Studio i Logo"
