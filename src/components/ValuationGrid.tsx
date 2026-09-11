@@ -34,26 +34,30 @@ function chunkArray<T>(array: T[], chunkSize: number): T[][] {
 }
 
 export default function ValuationGrid() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 300);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Disconnect observer after single-fire activation to free resources
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.01, rootMargin: "100px" }
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   // Split portfolio companies into left and right sides for desktop (16 & 16)

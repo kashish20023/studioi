@@ -19,16 +19,14 @@ export default function Home() {
         {/* YC Hero Section */}
         <HeroSection />
 
+
+        {/* Valuation Grid ("Adding Value" - $1.3 Trillion combined valuation + 32 Startup Logos) */}
+        <ValuationGrid />
+
         {/* Premium Scroll-Driven Showcase Component */}
         <div id="showcase">
           <CompanyShowcase />
         </div>
-
-        {/* Studio i Interactive Game Arcade Showcase Section (Placed right before "Adding Value") */}
-        <GameShowcaseSection />
-
-        {/* Valuation Grid ("Adding Value" - $1.3 Trillion combined valuation + 32 Startup Logos) */}
-        <ValuationGrid />
 
         {/* Editorial Narrative Section */}
         <EditorialSection />
@@ -36,8 +34,11 @@ export default function Home() {
         {/* Community 3x3 Photo Grid ("Be in the room with visionary founders & builders...") */}
         <CommunityGridSection />
 
-        {/* Apply CTA & 5 Horizontal Photo Showcase Section (Right before footer) */}
+        {/* Apply CTA & 5 Horizontal Photo Showcase Section */}
         <ApplyShowcaseSection />
+
+        {/* Studio i Interactive Game Arcade Showcase Section */}
+        <GameShowcaseSection />
       </main>
 
       {/* Reusable Black Footer Component */}
@@ -45,3 +46,4 @@ export default function Home() {
     </div>
   );
 }
+

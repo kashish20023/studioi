@@ -6,7 +6,7 @@ import { Gamepad2, Sparkles, ExternalLink, Maximize2, Play, UserCheck, ShieldChe
 
 export default function GameShowcaseSection() {
   return (
-    <section className="w-full bg-[#15120F] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+    <section className="w-full bg-[#000000] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
       {/* Animation Keyframes for Character Float & Glow */}
       <style>{`
         @keyframes characterFloat {
@@ -42,7 +42,7 @@ export default function GameShowcaseSection() {
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* HEADER WITH FEATURED GAME CHARACTER AVATAR SPOTLIGHT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-12 mb-10 sm:mb-14 border-b border-white/10 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-12 mb-10 sm:mb-14 pb-10">
 
           {/* LEFT: TEXT & ATTRACTIVE LINK BUTTON */}
           <div className="lg:col-span-8 space-y-5">
@@ -131,16 +131,13 @@ export default function GameShowcaseSection() {
         </div>
 
         {/* LIVE GAME EMBEDDED DISPLAY SECTION */}
-        <div className="relative w-full rounded-3xl sm:rounded-[36px] bg-neutral-900/90 border border-white/15 overflow-hidden shadow-2xl backdrop-blur-xl">
-
-          {/* TOP GAME BAR */}
+        {/* <div className="relative w-full rounded-3xl sm:rounded-[36px] bg-neutral-900/90 border border-white/15 overflow-hidden shadow-2xl backdrop-blur-xl">
           <div className="bg-black/80 px-6 py-4 border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
 
-              {/* CHARACTER MINI ICON IN BAR */}
               <div className="ml-2 flex items-center gap-2 bg-neutral-800/80 border border-white/10 px-3 py-1 rounded-full">
                 <div className="relative w-4 h-4 rounded-full overflow-hidden">
                   <Image
@@ -170,7 +167,6 @@ export default function GameShowcaseSection() {
             </div>
           </div>
 
-          {/* EMBEDDED IFRAME DISPLAYING THE GAME */}
           <div className="relative w-full h-[500px] sm:h-[620px] lg:h-[700px] bg-black">
             <iframe
               src="https://game.studioi.in/"
@@ -180,7 +176,6 @@ export default function GameShowcaseSection() {
             />
           </div>
 
-          {/* BOTTOM BAR WITH LINK */}
           <div className="bg-black/90 px-6 py-3.5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#d42f92]" />
@@ -198,7 +193,7 @@ export default function GameShowcaseSection() {
             </a>
           </div>
 
-        </div>
+        </div> */}
 
       </div>
     </section>

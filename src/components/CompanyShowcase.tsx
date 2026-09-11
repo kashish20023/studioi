@@ -16,33 +16,42 @@ export default function CompanyShowcase() {
 
   const isProgrammaticScroll = useRef(false);
 
-  // Setup IntersectionObserver for smooth scroll activation matching YC's section 2
+  // Smooth scroll-driven story transitions calculated directly from window scroll progress
   useEffect(() => {
-    const options: IntersectionObserverInit = {
-      root: null,
-      rootMargin: "-35% 0px -35% 0px",
-      threshold: 0.1,
+    let rafId: number | null = null;
+
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const navOffset = 64; // Sticky navbar height
+
+        const totalDistance = rect.height - windowHeight;
+        if (totalDistance <= 0) return;
+
+        const scrolled = navOffset - rect.top;
+        const progress = Math.max(0, Math.min(0.999, scrolled / totalDistance));
+
+        const count = stories.length;
+        const newIndex = Math.min(count - 1, Math.floor(progress * count));
+
+        setActiveIndex((prev) => (prev !== newIndex ? newIndex : prev));
+      });
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      if (isProgrammaticScroll.current) return;
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const indexAttr = entry.target.getAttribute("data-index");
-          if (indexAttr !== null) {
-            const index = parseInt(indexAttr, 10);
-            setActiveIndex((prev) => (prev !== index ? index : prev));
-          }
-        }
-      });
-    }, options);
-
-    stepRefs.current.forEach((stepEl) => {
-      if (stepEl) observer.observe(stepEl);
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -62,26 +71,35 @@ export default function CompanyShowcase() {
   // Programmatic scroll when clicking a company name directly
   const scrollToCompany = useCallback((index: number) => {
     setActiveIndex(index);
+    if (!containerRef.current) return;
+
     isProgrammaticScroll.current = true;
-    const targetStep = stepRefs.current[index];
-    if (targetStep) {
-      targetStep.scrollIntoView({ behavior: "smooth", block: "center" });
+    const rect = containerRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const navOffset = 64;
+    const totalDistance = rect.height - window.innerHeight;
+
+    if (totalDistance > 0) {
+      const segmentSize = totalDistance / stories.length;
+      const targetY = scrollTop + rect.top - navOffset + (index + 0.5) * segmentSize;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
     }
+
     setTimeout(() => {
       isProgrammaticScroll.current = false;
-    }, 1000);
+    }, 600);
   }, []);
 
   return (
     <section id="company-showcase" ref={containerRef} className="relative w-full bg-[#F6F6F2] font-sans select-none max-sm:py-4">
 
       {/* STICKY VIEWPORT CONTAINER (Pins in viewport during scroll through companies) */}
-      <div className="sticky top-16 h-[calc(100vh-64px)] w-full flex flex-col justify-between items-center overflow-hidden py-3 sm:py-5 px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="sticky top-16 min-h-[calc(100vh-64px)] w-full flex flex-col justify-center items-center py-4 sm:py-6 px-4 sm:px-6 lg:px-8 xl:px-12 pb-8 sm:pb-12">
 
         {/* MOBILE / TABLET TOP SELECTOR NAVIGATION (Visible ONLY on screens less than tablet view < lg) */}
-        <div className="lg:hidden flex flex-col items-center w-full flex-shrink-0">
+        <div className="lg:hidden flex flex-col items-center w-full flex-shrink-0 mb-4">
           {/* FLOATING INTERACTIVE ELLIPSE BADGE (Clickable to view detailed modal) */}
-          <div className="mb-2 z-20 flex-shrink-0">
+          <div className="mb-2.5 z-20 flex-shrink-0">
             <button
               onClick={() => setSelectedModalStory(currentStory)}
               className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-neutral-300/80 shadow-md hover:shadow-lg hover:border-neutral-400 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer text-xs sm:text-sm font-serif italic text-neutral-900"
@@ -102,10 +120,11 @@ export default function CompanyShowcase() {
                 onClick={() => {
                   scrollToCompany(idx);
                 }}
-                className={`px-4 py-2 text-xs sm:text-sm rounded-full transition-all duration-200 font-medium cursor-pointer whitespace-nowrap flex-shrink-0 inline-flex items-center justify-center leading-none ${idx === activeIndex
-                  ? "bg-neutral-950 text-white shadow-md font-semibold scale-105"
-                  : "bg-white/95 text-neutral-700 hover:bg-neutral-200 border border-neutral-300/80 shadow-xs hover:border-neutral-400"
-                  }`}
+                className={`px-4 py-2 text-xs sm:text-sm rounded-full transition-all duration-200 font-medium cursor-pointer whitespace-nowrap flex-shrink-0 inline-flex items-center justify-center leading-none ${
+                  idx === activeIndex
+                    ? "bg-neutral-950 text-white shadow-md font-semibold scale-105"
+                    : "bg-white/95 text-neutral-700 hover:bg-neutral-200 border border-neutral-300/80 shadow-xs hover:border-neutral-400"
+                }`}
               >
                 {s.name}
               </button>
@@ -122,18 +141,19 @@ export default function CompanyShowcase() {
               During Studio I
             </h3>
 
-            {/* Direct Edge-to-Edge Image Container (Massive Height & Aspect Ratio) */}
-            <div className="relative w-full aspect-[4/3.8] lg:aspect-[1/1] xl:aspect-[1/1.05] 2xl:aspect-[1/1.1] min-h-[380px] lg:min-h-[440px] xl:min-h-[500px] 2xl:min-h-[560px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
+            {/* Direct Edge-to-Edge Image Container (Responsive Aspect Ratio & Viewport Height) */}
+            <div className="relative w-full aspect-[4/3] h-[36vh] sm:h-[38vh] lg:h-[42vh] max-h-[420px] min-h-[250px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 const imgSrc: string = story.duringImage || story.duringFallback || "";
                 return (
                   <div
                     key={`during-${story.id}`}
-                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${isActive
-                      ? "opacity-100 scale-100 rotate-0 z-10"
-                      : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
-                      }`}
+                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+                      isActive
+                        ? "opacity-100 scale-100 rotate-0 z-10"
+                        : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
+                    }`}
                     style={{
                       willChange: "opacity, transform",
                       transform: isActive ? "translate3d(0,0,0) scale(1)" : "translate3d(0,0,0) scale(0.95)",
@@ -159,16 +179,17 @@ export default function CompanyShowcase() {
             </div>
 
             {/* Caption Text with Smooth Cross-fade */}
-            <div className="relative min-h-[54px] w-full max-w-[480px] flex items-center justify-center pt-1">
+            <div className="relative min-h-[50px] w-full max-w-[480px] flex items-center justify-center pt-2 pb-1 text-center">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 return (
                   <p
                     key={`during-cap-${story.id}`}
-                    className={`text-xs sm:text-sm text-neutral-700 leading-snug tracking-tight font-normal transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-3 absolute pointer-events-none"
-                      }`}
+                    className={`text-xs sm:text-sm text-neutral-700 leading-snug tracking-tight font-normal transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isActive
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-3 absolute pointer-events-none"
+                    }`}
                   >
                     {story.duringCaption}
                   </p>
@@ -178,7 +199,7 @@ export default function CompanyShowcase() {
           </div>
 
           {/* 2. CENTER COLUMN: Vertical Drum Wheel List (2 Cols - Compact Text Grid) */}
-          <div className="col-span-2 flex flex-col items-center justify-center select-none relative h-[440px] lg:h-[520px] xl:h-[580px] overflow-hidden px-1">
+          <div className="col-span-2 flex flex-col items-center justify-center select-none relative h-[36vh] sm:h-[38vh] lg:h-[42vh] max-h-[420px] min-h-[250px] overflow-hidden px-1">
 
             {/* Focal Highlight Box Background */}
             <div className="absolute inset-x-0 h-16 top-1/2 -translate-y-1/2 rounded-xl pointer-events-none transition-all duration-300 drop-shadow-lg" />
@@ -202,17 +223,19 @@ export default function CompanyShowcase() {
                       scrollToCompany(idx);
                       setSelectedModalStory(story);
                     }}
-                    className={`group relative text-center focus:outline-none transition-all duration-500 cursor-pointer h-12 flex items-center justify-center px-1 w-full ${isActive ? "scale-105" : "hover:scale-105"
-                      }`}
+                    className={`group relative text-center focus:outline-none transition-all duration-500 cursor-pointer h-12 flex items-center justify-center px-1 w-full ${
+                      isActive ? "scale-105" : "hover:scale-105"
+                    }`}
                     title={`Click to view full details for ${story.name}`}
                   >
                     <span
-                      className={`font-serif tracking-tight transition-all duration-500 block text-center whitespace-nowrap ${isActive
-                        ? "text-lg lg:text-xl xl:text-2xl font-bold text-neutral-950 opacity-100"
-                        : distance === 1
-                          ? "text-sm xl:text-base font-normal text-neutral-400 opacity-40 hover:opacity-75"
-                          : "text-xs xl:text-sm font-normal text-neutral-300 opacity-20 hover:opacity-50"
-                        }`}
+                      className={`font-serif tracking-tight transition-all duration-500 block text-center whitespace-nowrap ${
+                        isActive
+                          ? "text-lg lg:text-xl xl:text-2xl font-bold text-neutral-950 opacity-100"
+                          : distance === 1
+                          ? "text-sm xl:text-base font-medium text-neutral-600 opacity-60 hover:opacity-90"
+                          : "text-xs xl:text-sm font-normal text-neutral-500 opacity-40 hover:opacity-75"
+                      }`}
                     >
                       {story.name}
                     </span>
@@ -229,18 +252,19 @@ export default function CompanyShowcase() {
               Now
             </h3>
 
-            {/* Direct Edge-to-Edge Image Container (Massive Height & Aspect Ratio) */}
-            <div className="relative w-full aspect-[4/3.8] lg:aspect-[1/1] xl:aspect-[1/1.05] 2xl:aspect-[1/1.1] min-h-[380px] lg:min-h-[440px] xl:min-h-[500px] 2xl:min-h-[560px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
+            {/* Direct Edge-to-Edge Image Container (Responsive Aspect Ratio & Viewport Height) */}
+            <div className="relative w-full aspect-[4/3] h-[36vh] sm:h-[38vh] lg:h-[42vh] max-h-[420px] min-h-[250px] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl transition-all duration-500">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 const imgSrc: string = story.nowImage || story.nowFallback || "";
                 return (
                   <div
                     key={`now-${story.id}`}
-                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${isActive
-                      ? "opacity-100 scale-100 rotate-0 z-10"
-                      : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
-                      }`}
+                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+                      isActive
+                        ? "opacity-100 scale-100 rotate-0 z-10"
+                        : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
+                    }`}
                     style={{
                       willChange: "opacity, transform",
                       transform: isActive ? "translate3d(0,0,0) scale(1)" : "translate3d(0,0,0) scale(0.95)",
@@ -266,16 +290,17 @@ export default function CompanyShowcase() {
             </div>
 
             {/* Caption Text with Smooth Cross-fade */}
-            <div className="relative min-h-[54px] w-full max-w-[480px] flex items-center justify-center pt-1">
+            <div className="relative min-h-[50px] w-full max-w-[480px] flex items-center justify-center pt-2 pb-1 text-center">
               {stories.map((story, idx) => {
                 const isActive = idx === activeIndex;
                 return (
                   <p
                     key={`now-cap-${story.id}`}
-                    className={`text-xs sm:text-sm text-neutral-700 leading-snug tracking-tight font-normal transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-3 absolute pointer-events-none"
-                      }`}
+                    className={`text-xs sm:text-sm text-neutral-700 leading-snug tracking-tight font-normal transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isActive
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-3 absolute pointer-events-none"
+                    }`}
                   >
                     {story.nowCaption}
                   </p>
@@ -287,11 +312,10 @@ export default function CompanyShowcase() {
         </div>
 
         {/* MOBILE RESPONSIVE LAYOUT (< lg screens) */}
-        <div className="lg:hidden w-full max-w-2xl mx-auto flex flex-col justify-center h-full py-2 px-3 max-sm:p-0">
+        <div className="lg:hidden w-full max-w-2xl mx-auto flex flex-col justify-center items-center flex-1 py-2 px-3">
 
           {/* Mobile Side-by-Side Comparison View */}
-          {/* <div className="grid grid-cols-2 gap-3 sm:gap-6 items-start my-auto w-full"> */}
-          <div className="grid max-sm:grid-rows-2 md:grid-cols-2 gap-3 sm:gap-6 items-start my-auto w-full max-sm:my-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start my-auto w-full">
             {/* Mobile During Studio I */}
             <div className="flex flex-col space-y-2 text-center w-full">
               <span className="font-serif italic text-xs sm:text-sm md:text-base font-medium text-neutral-800">
@@ -301,10 +325,11 @@ export default function CompanyShowcase() {
                 {stories.map((s, idx) => (
                   <div
                     key={`mob-during-${s.id}`}
-                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${idx === activeIndex
-                      ? "opacity-100 scale-100 rotate-0 z-10"
-                      : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
-                      }`}
+                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+                      idx === activeIndex
+                        ? "opacity-100 scale-100 rotate-0 z-10"
+                        : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
+                    }`}
                     style={{
                       willChange: "opacity, transform",
                     }}
@@ -323,19 +348,6 @@ export default function CompanyShowcase() {
                   </div>
                 ))}
               </div>
-              {/* <div className="relative min-h-[48px] w-full flex items-center justify-center pt-1 px-1">
-                {stories.map((s, idx) => (
-                  <p
-                    key={`mob-during-cap-${s.id}`}
-                    className={`text-[10px] sm:text-xs text-neutral-700 leading-snug tracking-tight text-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${idx === activeIndex
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-2 absolute pointer-events-none"
-                      }`}
-                  >
-                    {s.duringCaption}
-                  </p>
-                ))}
-              </div> */}
             </div>
 
             {/* Mobile Now */}
@@ -347,10 +359,11 @@ export default function CompanyShowcase() {
                 {stories.map((s, idx) => (
                   <div
                     key={`mob-now-${s.id}`}
-                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${idx === activeIndex
-                      ? "opacity-100 scale-100 rotate-0 z-10"
-                      : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
-                      }`}
+                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+                      idx === activeIndex
+                        ? "opacity-100 scale-100 rotate-0 z-10"
+                        : "opacity-0 scale-95 z-0 pointer-events-none blur-[1px]"
+                    }`}
                     style={{
                       willChange: "opacity, transform",
                     }}
@@ -369,14 +382,15 @@ export default function CompanyShowcase() {
                   </div>
                 ))}
               </div>
-              <div className="relative min-h-[48px] w-full flex items-center justify-center pt-1 px-1">
+              <div className="relative min-h-[40px] w-full flex items-center justify-center pt-1 px-1">
                 {stories.map((s, idx) => (
                   <p
                     key={`mob-now-cap-${s.id}`}
-                    className={`text-[10px] sm:text-xs text-neutral-700 leading-snug tracking-tight text-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${idx === activeIndex
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-2 absolute pointer-events-none"
-                      }`}
+                    className={`text-[10px] sm:text-xs text-neutral-700 leading-snug tracking-tight text-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      idx === activeIndex
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-2 absolute pointer-events-none"
+                    }`}
                   >
                     {s.nowCaption}
                   </p>
@@ -388,7 +402,7 @@ export default function CompanyShowcase() {
         </div>
       </div>
 
-      {/* INVISIBLE SCROLL STEP TRACK (Provides height to trigger step transitions on scroll) */}
+      {/* INVISIBLE SCROLL STEP TRACK (Provides responsive height to trigger step transitions) */}
       <div className="relative w-full">
         {stories.map((story, index) => (
           <div
@@ -397,7 +411,7 @@ export default function CompanyShowcase() {
             ref={(el) => {
               stepRefs.current[index] = el;
             }}
-            className="h-[80vh] w-full pointer-events-none"
+            className="h-[55vh] sm:h-[60vh] lg:h-[65vh] w-full pointer-events-none"
           />
         ))}
       </div>
